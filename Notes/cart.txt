@@ -1,0 +1,64 @@
+<table width="100%">
+                        <!--
+                        <tr style="border-bottom: 1px solid #FE980F;color: white;background-color: #FE980F;">
+                            <td class="col-xs-1 col-sm-1" style="padding-bottom: 10px;padding-top: 10px;">
+                                <input type="checkbox">
+                            </td>
+                            <td class="col-xs-10 col-sm-10 text-center" style="padding-bottom: 10px;padding-top: 10px;">
+                                <p title="HUGO BOSS FEMME" style="font-size:16px;margin-bottom:0">HUGO BOSS FEMME</p>
+                            </td>
+                            <td class="col-xs-1 col-sm-1 cart_delete" style="padding-bottom: 10px;padding-top: 10px;padding-right: 10px;"><a class="cart_quantity_delete" href="" style="float:right"><i class="fa fa-times"></i></a></td>
+                        </tr>
+-->
+                        <tr>
+
+                            <td colspan="3">
+                                <table width="100%" style="margin-top: 10px;">
+                                    <tr>
+                                        <td rowspan="4" class="text-center" width="20%"><img class="img-barang" src="images/cart/one.png"></td>
+                                        <td class="cart_description">
+                                            <h4><a href="">Colorblock Scuba</a></h4>
+                                            <p>Web ID: 1089772</p>
+                                            <p><b>By:</b> <a href="javascript:void(0);" class="seller-detail" onclick="getSellerDetail(5599)" style="color:#FE980F;font-weight:bold">LAWA JELITA</a></p>
+                                        </td>
+                                        <td class="cart_price">
+                                            <p>RM59</p>
+                                        </td>
+                                        <td class="cart_quantity">
+                                            <div class="cart_quantity_button"> <a class="cart_quantity_up" href=""> + </a>
+                                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2"> <a class="cart_quantity_down" href=""> - </a> </div>
+                                        </td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">RM59</p>
+                                        </td>
+                                        <td class="cart_delete"> <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a> </td>
+                                    </tr>
+                                    <!--
+                                    <tr>
+                                        <td rowspan="4" class="text-center" width="20%"><img class="img-barang" src="images/cart/one.png"></td>
+                                        <td>
+                                            <p class="truncate">Description product...</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><b>By:</b> <a href="javascript:void(0);" class="seller-detail" onclick="getSellerDetail(5599)" style="color:#FE980F;font-weight:bold">LAWA JELITA</a></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_quantity_button">
+                                            <a class="cart_quantity_up" href=""> + </a>
+                                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2"> <a class="cart_quantity_down" href=""> - </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h3 style="margin-top:10px;margin-bottom:0px;">RM39.00</h3>
+                                        </td>
+                                    </tr>
+-->
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
