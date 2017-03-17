@@ -42,9 +42,10 @@ $_SESSION['current_page'] = $_SERVER['REQUEST_URI'];
                 width: 10vw;
                 border-radius: 50%;
                 border: 1px solid gray;
-                background-image: url(images/home/bizapp_logo.png);
+                background-image: url(images/preloader.gif);
                 background-position: center center;
                 background-repeat: no-repeat;
+                background-size: cover;
             }
             
             .seller-logo {
@@ -143,12 +144,14 @@ $_SESSION['current_page'] = $_SERVER['REQUEST_URI'];
                                             echo "<li class='cart-user'><a href='cart.php'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
                                             echo "<li class='logout-user' data-toggle='modal' data-target='#logout-modal'><a href='javascript:void'><i class='fa fa-lock'></i> Logout</a></li>";
                                         }else{
+                                            echo "<li class='cart-user'><a href='cart.php'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
                                             echo "<li class='login-user'><a href='login.php'><i class='fa fa-lock'></i> Login/Signup</a></li>";
                                         }
                                     ?>
                                 </ul>
                             </div>
                         </div>
+                        <div id="snackbar">Product Successfully Added To Cart</div>
                         <!-- Modal -->
                         <div class="modal fade" id="modalAccount" tabindex="-1" role="dialog" aria-labelledby="modalAccountLabel">
                             <div class="modal-dialog" role="document">
@@ -456,7 +459,13 @@ $_SESSION['current_page'] = $_SERVER['REQUEST_URI'];
         <script>
             $(document).ready(function () {
 
-
+                function toast() {
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 3000);
+                }
 
                 $.urlParam = function (name) {
                     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);

@@ -3,9 +3,12 @@
    session_start();
 
    $user_check = "";
+    $user_id;
    
    if(isset($_SESSION['login_user'])){
        $user_check = $_SESSION['login_user'];
+   }else{
+       $user_id=15;
    }
    
    $ses_sql = mysqli_query($conn,"select * from comm_user where username = '$user_check' ");

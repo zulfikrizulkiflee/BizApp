@@ -1,7 +1,15 @@
 <?php
 include("session.php");
 
-$user_id = $_POST['user_id'];
+//$user_id = $_POST['user_id'];
+
+if(isset($user_id)){
+    $user_id=$user_id;
+}else{
+    $user_id=15;
+}
+
+$total_price=0;
 
 $sql = "SELECT comm_cart.user_id AS user_id,track_product.id AS id_barang,track_product.price, track_product.attachment AS pic_barang, track_product.productname AS nama_barang, track_product.productdesc AS detail_barang, track_user.nama AS nama_seller, track_product.price AS harga_barang, track_product.statusstok AS status_barang,track_product.bilstok,comm_cart.checkin_date,comm_cart.quantity AS quantity,comm_cart.price_sum AS price_sum FROM comm_cart,track_user,track_product WHERE comm_cart.user_id=".$user_id." AND track_user.pid=comm_cart.seller_id AND comm_cart.prod_id=track_product.id ORDER BY comm_cart.checkin_date DESC";
 $result = $conn->query($sql);
@@ -52,7 +60,7 @@ if ($result->num_rows > 0) {
                         </div>
                         <div class='col-xs-2 col-sm-1 cart_delete' style='float:right'> 
                             <a class='cart_quantity_delete' id='".$row['id_barang']."' href='javascript:void(0);'><i class='fa fa-trash-o'></i></a>
-                            <label for='prod_".$row['id_barang']."' class='cart_quantity_select' href='javascript:void(0);'><i class='fa fa-check-circle'></i></label>
+                            <label for='prod_".$row['id_barang']."' class='cart_quantity_select check_item' href='javascript:void(0);'><i class='fa fa-check-circle'></i></label>
                             <input type='checkbox' class='select_prod' id='prod_".$row['id_barang']."' style='display:none' checked> 
                         </div>
                         <div class='col-xs-6 col-xs-offset-2 col-sm-8 col-sm-offset-0 cart_quantity'>
@@ -64,6 +72,8 @@ if ($result->num_rows > 0) {
                         </div>
                     </div>
                 </div>";
+        $total_price+=(float)$row['price_sum'];
+        
     }
     echo "<script>
         $('.cart_quantity_input').on('change',function(){
@@ -73,9 +83,9 @@ if ($result->num_rows > 0) {
         })
         var jumlah;
         function quantityUp(price,jumlah){
-                jumlah=parseInt(jumlah);
-                jumlah+=1;
-                
+            jumlah=parseInt(jumlah);
+            jumlah+=1;
+            
         }
     
         function quantityDown(price,jumlah){
@@ -88,12 +98,28 @@ if ($result->num_rows > 0) {
             $('.cart_quantity_select').on('click',function(){
                 var x=$(this).html();
                 if(x=='<i class=\"fa fa-circle-o\"></i>'){
+                    $(this).removeClass('uncheck_item').addClass('check_item');
                     $(this).html('<i class=\"fa fa-check-circle\"></i>');
                     $(this).parents().eq(2).css('border','3px solid orange');
                     console.log($('#prod_".$row['id_barang']."').attr('class'));
+                    
                 }else{
+                    $(this).removeClass('check_item').addClass('uncheck_item');
                     $(this).html('<i class=\"fa fa-circle-o\"></i>');
                     $(this).parents().eq(2).css('border','3px solid #E6E4DF');
+                    
+                }
+                
+                var num_check=$('.check_item').length;
+                var num_uncheck=$('.uncheck_item').length;
+                
+                if(num_check==0){
+                    $('.all').text('Select All');
+                    $('.all').removeClass('all_checked').addClass('all_unchecked');
+                }
+                if(num_uncheck==0){
+                    $('.all').text('Unselect All');
+                    $('.all').removeClass('all_unchecked').addClass('all_checked');
                 }
             });
             
@@ -111,6 +137,7 @@ if ($result->num_rows > 0) {
                         },
                         url: 'cart_remove.php',
                         success: function (data) {
+                            $('.total_price span').text('RM".number_format((float)$total_price, 2, '.', '')."');
                             generateCart();
                         }
                     });
@@ -118,6 +145,8 @@ if ($result->num_rows > 0) {
                 
                 
             });
+            
+            
             </script>";
 } else {
     echo "<div class='col-sm-12 not-found'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Your cart is empty...</div>";

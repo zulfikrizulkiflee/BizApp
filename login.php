@@ -143,9 +143,10 @@
                                         if(isset($_SESSION['login_user'])){
                                             echo "<li class='account-user' data-toggle='modal' data-target='#modalAccount'><a href=''><i class='fa fa-user'></i> ".$login_session."</a></li>";
                                             echo "<li class='cart-user'><a href='cart.php'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
-                                            echo "<li class='logout-user' data-toggle='modal' data-target='#logout-modal'><a href='javascript:void'><i class='fa fa-lock'></i> Logout</a></li>";
+                                            echo "<li class='logout-user' data-toggle='modal' data-target='#logout-modal'><a href='javascript:void' class='active'><i class='fa fa-lock'></i> Logout</a></li>";
                                         }else{
-                                            echo "<li class='login-user'><a href='login.php'><i class='fa fa-lock'></i> Login/Signup</a></li>";
+                                            echo "<li class='cart-user'><a href='cart.php'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
+                                            echo "<li class='login-user'><a href='login.php' class='active'><i class='fa fa-lock'></i> Login/Signup</a></li>";
                                         }
                                     ?>
                                 </ul>

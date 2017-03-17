@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
         
         $imagestr="<div style='background-image: url(".$image."); width: 100%; height: 380px; position: absolute; background-color: black; background-size: cover; background-position: center center;'></div>";
         
-        echo"<div class='col-xs-6 col-sm-4 col-lg-3'> <div class='product-image-wrapper'> <div class='single-products'> <div class='productinfo text-center'> <a href='#' class='prod-desired' id='".$row['id']."' data-toggle='modal' data-target='#product-modal'><img class='backup_picture lazy' data-original='".$image."' alt='".$image."' /></a> <h2>RM".$row['price']."</h2> <p class='truncate' title='".$row['productname']."'>".$row['productname']."</p><br> <a href='javascript:void' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Buy Now</a> </div> </div> <div class='choose'> <ul class='nav nav-pills nav-justified'> <li><a href='javascript:void'><i class='fa fa-plus'></i>Add to Cart</a></li> <li><a href='javascript:void'><i class='fa fa-eye'></i>View shop</a></li> </ul> </div> </div> </div>";    
+        echo"<div class='col-xs-6 col-sm-4 col-lg-3'> <div class='product-image-wrapper'> <div class='single-products'> <div class='productinfo text-center'> <a href='#' class='prod-desired' id='".$row['id']."' data-toggle='modal' data-target='#product-modal'><img class='backup_picture lazy' data-original='".$image."' alt='".$image."' /> <h2>RM".$row['price']."</h2> <p class='truncate' title='".$row['productname']."'>".$row['productname']."</p><br></a> </div> </div>  </div> </div>";    
     }
     
     $preloader="<div class=\"row preloader\"><div class=\"wrap-loading\"><div class=\"loading loading-4\"></div></div></div>";

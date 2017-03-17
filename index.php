@@ -93,6 +93,7 @@
                                             echo "<li class='cart-user'><a href='cart.php'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
                                             echo "<li class='logout-user' data-toggle='modal' data-target='#logout-modal'><a href='javascript:void'><i class='fa fa-lock'></i> Logout</a></li>";
                                         }else{
+                                            echo "<li class='cart-user'><a href='cart.php'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
                                             echo "<li class='login-user'><a href='login.php'><i class='fa fa-lock'></i> Login/Signup</a></li>";
                                         }
                                     ?>

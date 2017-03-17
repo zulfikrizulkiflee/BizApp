@@ -65,6 +65,10 @@
                 border: 1px solid #E6E4DF;
             }
             
+            .all_checked:hover {
+                background-color: #E6E4DF;
+            }
+            
             @media(max-width:480px) {
                 .img-barang {
                     width: 50px;
@@ -144,6 +148,7 @@
                                             echo "<li class='cart-user'><a href='cart.php' class='active'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
                                             echo "<li class='logout-user' data-toggle='modal' data-target='#logout-modal'><a href='javascript:void'><i class='fa fa-lock'></i> Logout</a></li>";
                                         }else{
+                                            echo "<li class='cart-user'><a href='cart.php' class='active'><i class='fa fa-shopping-cart'></i> Cart</a></li>";
                                             echo "<li class='login-user'><a href='login.php'><i class='fa fa-lock'></i> Login/Signup</a></li>";
                                         }
                                     ?>
@@ -383,17 +388,15 @@
                 <div class="col-sm-6 col-sm-offset-6">
                     <div class="total_area col-sm-12">
                         <ul style="padding-left:0">
-                            <li>Cart Sub Total <span>RM59</span></li>
-                            <li>Eco Tax <span>RM2</span></li>
-                            <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>RM61</span></li>
+                            <li>Shipping Cost <span>Not Available</span></li>
+                            <li class="total_price">Total <span>RM00</span></li>
                         </ul>
                     </div>
                     <div class="col-sm-12">
                         <table class="col-xs-12" style="float:right">
                             <tr>
-                                <td width="33%"><a class="btn btn-default all" href="">Unselect All</a></td>
-                                <td width="33%"><a class="btn btn-default update" href="">Update</a></td>
+                                <td width="33%"></td>
+                                <td width="33%"><a class="btn all all_checked" href="javascript:void(0);">Unselect All</a></td>
                                 <td width="33%"><a class="btn btn-default check_out" href="checkout.html">Check Out</a></td>
                             </tr>
                         </table>
@@ -543,7 +546,7 @@
         <script src="js/jquery.prettyPhoto.js"></script>
         <script src="js/main.js"></script>
         <script>
-            var user_id = <?php echo $user_id.";";?>
+            var user_id = <?php if(isset($user_id)){ echo $user_id;}else{echo "15";} ?>;
             console.log(user_id);
             if (user_id != null) {
                 generateCart();
@@ -554,7 +557,19 @@
             }
             $(".cart-container").html("<div class=\"row preloader\"><div class=\"wrap-loading\"><div class=\"loading loading-4\"></div></div></div>");
 
-
+            $('.all').on('click', function () {
+                if ($(this).hasClass("all_checked")) {
+                    $(this).text("Select All");
+                    console.log("deselect");
+                    $('.check_item').click();
+                    $(this).removeClass("all_checked").addClass("all_unchecked");
+                } else {
+                    $(this).text("Unselect All");
+                    $('.uncheck_item').click();
+                    console.log("Unselect");
+                    $(this).removeClass("all_unchecked").addClass("all_checked");
+                }
+            });
 
             function generateCart() {
                 $.ajax({
@@ -565,6 +580,17 @@
                     url: 'cart_info.php',
                     success: function (data) {
                         $(".cart-container").html(data);
+                        $.ajax({
+                            type: 'POST',
+                            data: {
+                                user_id: user_id
+                            },
+                            url: 'cart_calc.php',
+                            success: function (data) {
+                                $(".total_area").html(data);
+
+                            }
+                        });
                     }
                 });
             }

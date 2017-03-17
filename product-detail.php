@@ -78,7 +78,7 @@ if ($result->num_rows > 0) {
         }
         
         if($user_id==""){
-            $user_id=14;
+            $user_id=15;
         }
         
         

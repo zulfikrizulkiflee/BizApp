@@ -26,6 +26,4 @@ $(document).ready(function () {
     $(".logout-btn").on("click", function () {
         window.open("logout.php", "_self");
     });
-
-
 });
